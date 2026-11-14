@@ -1,0 +1,6 @@
+<article class="reading-card-preview">
+  <div class="card-preview-top"><span class="avatar avatar-small">{{ card.author.username|slice:':1'|upper }}</span><span class="card-author">{{ card.author.get_full_name|default:card.author.username }}</span><time datetime="{{ card.updated_at|date:'c' }}">{{ card.updated_at|date:'m月d日' }}</time>{% if card.is_demo %}<span class="demo-badge">演示</span>{% elif card.curated_source %}<span class="curated-badge">原文导读</span>{% endif %}</div>
+  <h3><a href="{% url 'club:card_detail' card.pk %}">{{ card.paper.title }}</a></h3>
+  <p class="card-preview-label">我的理解</p><p class="card-preview-text">{{ card.reflection|truncatechars:130 }}</p>
+  <div class="card-preview-bottom"><span>{% if card.user_status_label %}{{ card.user_status_label }} · {% endif %}{{ card.comment_count }} 条讨论</span><a href="{% url 'club:card_detail' card.pk %}">阅读卡片 <span aria-hidden="true">↗</span></a></div>
+</article>

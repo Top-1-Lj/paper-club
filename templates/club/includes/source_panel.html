@@ -1,0 +1,14 @@
+{% if source %}
+<section class="source-panel">
+  <div class="source-panel-heading"><span class="curated-badge">原文导读</span><strong>基于论文原文整理，AI辅助生成，待人工复核</strong></div>
+  <p class="source-basis">阅读依据：用户提供的 PDF 全文，共 {{ source.provenance.pdf_pages }} 页。文中“PDF 第 N 页”均从文件首页起计。</p>
+  {% if source.card_id and not card %}<a class="text-link" href="{% url 'club:card_detail' source.card_id %}">打开带原文依据的阅读卡片 ↗</a>{% endif %}
+  <details class="source-details"><summary>来源与核对说明</summary>
+    <dl><div><dt>正式发表</dt><dd>{{ source.provenance.publication }}</dd></div><div><dt>正式发表年份</dt><dd>{{ source.provenance.publication_year|default_if_none:'未核实' }}</dd></div><div><dt>预印本年份</dt><dd>{{ source.provenance.preprint_year|default_if_none:'未核实' }}</dd></div></dl>
+    <p>原始文件：<span class="source-filename">{{ source.provenance.pdf_filename }}</span></p>
+    <ul>{% for item in source.provenance.metadata_sources %}<li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }} ↗</a></li>{% endfor %}</ul>
+    {% if source.provenance.verification_notes %}<h3>核对说明与待确认项</h3><ul>{% for note in source.provenance.verification_notes %}<li>{{ note }}</li>{% endfor %}</ul>{% endif %}
+    <h3>关键结论对照</h3><ul class="evidence-list">{% for item in source.provenance.evidence %}<li><strong>{{ item.claim }}</strong><span>{{ item.location }}</span><p>{{ item.detail }}</p></li>{% endfor %}</ul>
+  </details>
+</section>
+{% endif %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}我的阅读卡片{% endblock %}
+{% block content %}
+<section class="welcome-row"><div><p class="eyebrow">MY READING DESK</p><h1>我的阅读卡片<span class="heading-dot">.</span></h1></div><a class="button button-outline button-small" href="{% url 'club:paper_list' %}">发现下一篇论文 ↗</a></section>
+<div class="my-reading-intro"><div class="my-reading-avatar">{{ user.username|slice:':1'|upper }}</div><div><h2>{{ user.username }} 的阅读积累</h2><p>每一张卡片，都是你与一个问题认真相处的记录。</p></div><div class="my-reading-count"><strong>{{ total_cards }}</strong><span>张阅读卡片</span></div></div>
+<form class="reading-filter-form" method="get" action="{% url 'club:my_cards' %}" role="search"><div class="search-form"><label class="sr-only" for="card-search">搜索我的阅读卡片</label><input id="card-search" name="q" value="{{ q }}" placeholder="搜索论文标题、作者或标签…" maxlength="200"></div><label class="sr-only" for="status-filter">按阅读状态筛选</label><select id="status-filter" name="status"><option value="">全部阅读状态</option>{% for value,label in status_choices %}<option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button class="button" type="submit">筛选</button>{% if q or status %}<a class="text-link" href="{% url 'club:my_cards' %}">清除</a>{% endif %}</form>
+<div class="section-heading"><h2>{% if q or status %}筛选结果{% else %}我的全部卡片{% endif %}</h2><span class="section-count">{{ page_obj.paginator.count }} 张</span></div>
+<div class="my-cards-grid">{% for card in cards %}{% include 'club/includes/card_item.html' %}{% empty %}<div class="empty-state full-width"><span class="empty-icon" aria-hidden="true">✎</span><h3>{% if q or status %}没有符合条件的阅读卡片{% else %}你的第一张卡片，从这里开始{% endif %}</h3><p>{% if q or status %}调整关键词或阅读状态，再试一次。{% else %}选一篇正在读的论文，记录它的问题、方法和你的理解。{% endif %}</p><a class="button" href="{% url 'club:paper_list' %}">去论文广场看看 ↗</a></div>{% endfor %}</div>
+{% include 'club/includes/pagination.html' %}
+{% endblock %}

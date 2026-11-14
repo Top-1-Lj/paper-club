@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}暂无操作权限{% endblock %}
+{% block content %}<section class="empty-state error-state"><p class="eyebrow">403 / A SHARED SPACE, PERSONAL NOTES</p><h1>这份内容由作者维护</h1><p>你可以浏览、评论，或为同一篇论文写下自己的阅读卡片。</p><a class="button" href="{% url 'club:paper_list' %}">返回论文广场 →</a></section>{% endblock %}
