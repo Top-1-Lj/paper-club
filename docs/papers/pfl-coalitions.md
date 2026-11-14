@@ -4,7 +4,7 @@
 
 ## 阅读范围与出版信息
 
-完整阅读用户提供的 `Toward_Personalized_Federated_Learning_via_Overlapping_Coalition_Formation_Game.pdf`，共 **14页**，包含主文、参考文献和作者简介。所有“PDF第N页”均从文件首页按1计数，对应期刊页码11790–11803。另对第1、11、12页做图像核对，确认出版脚注、图9和表格数值。未分发原PDF、渲染页或全文提取文本。
+完整阅读核对的 `Toward_Personalized_Federated_Learning_via_Overlapping_Coalition_Formation_Game.pdf`，共 **14页**，包含主文、参考文献和作者简介。所有“PDF第N页”均从文件首页按1计数，对应期刊页码11790–11803。另对第1、11、12页做图像核对，确认出版脚注、图9和表格数值。未分发原PDF、渲染页或全文提取文本。
 
 - 题名：Toward Personalized Federated Learning via Overlapping Coalition Formation Game。
 - 正式版本作者顺序：Yan Gong; Bing Luo; Jiawei Jiang; Siping Shi; Chuang Hu; Dazhao Cheng。
@@ -15,7 +15,7 @@
 - 预印本年份：未确认，数据文件中记为`null`。
 - 代码地址：未确认，留空。未找到不能推出代码不存在。
 
-作者[个人主页](https://luobing1008.github.io/)的同题论文条目额外列出H. Liang，与正式PDF和机构记录不一致。当前按后两者录入六位作者，把差异列为待核实项，未自行拼接两个名单。IEEE网页在本次访问中返回机器人验证页，出版信息的主要证据是用户提供的正式PDF和作者机构记录。
+作者[个人主页](https://luobing1008.github.io/)的同题论文条目额外列出H. Liang，与正式PDF和机构记录不一致。当前按后两者录入六位作者，把差异列为待核实项，未自行拼接两个名单。IEEE网页在本次访问中返回机器人验证页，出版信息的主要证据是核对的正式PDF和作者机构记录。
 
 ## 方法与结论依据
 
@@ -51,7 +51,7 @@ PDF第11页图9的图例为20、40、60、80、100客户端。作者报告这些
 还有两项需要保留：
 
 1. 第2页说明可能存在多个个体稳定结构，第7页Remark又对初始结构与最终结构作出较强表述；本次将其作为讨论题，没有声称已独立验证最终结构唯一。
-2. 第6页引理2、定理1的证明指向appendix，但用户提供的14页文件未附该附录；本次核对主文内容，没有完整复验附录证明。
+2. 第6页引理2、定理1的证明指向appendix，但核对的14页文件未附该附录；本次核对主文内容，没有完整复验附录证明。
 
 ## 数据文件
 

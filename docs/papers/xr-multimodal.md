@@ -4,7 +4,7 @@
 
 ## 来源与阅读范围
 
-- 阅读用户提供的完整12页PDF：`Toward_Multimodal_Privacy_in_XR_Design_and_Evaluation_of_Composite_Privatization_Methods_for_Gaze_and_Body_Tracking_Data.pdf`。
+- 阅读核对的完整12页PDF：`Toward_Multimodal_Privacy_in_XR_Design_and_Evaluation_of_Composite_Privatization_Methods_for_Gaze_and_Body_Tracking_Data.pdf`。
 - 下文“PDF第N页”从文件第一页计，依次对应期刊页4396–4407；已读取正文、参考文献和附录。
 - 已渲染并视觉核对PDF第1页（出版信息）、第8页（表3/表4）、第9页（表5与作者明确限制）。原PDF和页面渲染图只用于本地核对，未作为项目源码资料发布。
 - 应用可复建内容位于 [数据文件](../../data/papers/xr-multimodal.json)，不是原文全文的复制。

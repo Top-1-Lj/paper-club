@@ -4,7 +4,7 @@
 
 应用采用 Django 服务端渲染。URL 路由分派到 `club.views`，表单通过 `club.forms` 校验，业务数据存储在 SQLite，页面由项目内的 Django 模板和静态样式构成。导出转换独立放在 `club.exports`，便于测试和后续复用。
 
-首版选择同一个 Django 应用承载紧密相关的共读业务，避免为规模较小的 Demo 引入额外服务。对外链接只保存地址；论文录入不抓取远程页面，使用已安装的应用不依赖模型服务。
+项目使用单个 Django 应用组织共读业务，配置、模板与静态资源保持独立。对外链接只保存地址；论文录入不抓取远程页面，使用已安装的应用不依赖模型服务。
 
 ## 数据关系
 
@@ -13,12 +13,15 @@ User ── created_by ── Paper
 User ── author ────── ReadingCard ── paper ── Paper
 User ── user ──────── ReadingProgress ── paper ── Paper
 User ── author ────── Comment ── card ── ReadingCard
+ImportedPaper ── paper ── Paper
+ImportedPaper ── card ─── ReadingCard
 ```
 
 - `Paper` 保存文献元数据、原文链接和录入者。
 - `ReadingCard` 保存一名用户对一篇论文的结构化笔记。数据库唯一约束保证同一用户对同一篇论文只有一张卡片，不同用户可分别写卡。
 - `ReadingProgress` 独立记录 `(user, paper)` 的未读、在读或已读状态。状态不放在 `Paper` 上，避免一位同学更新后影响所有人；也允许先记录状态再写卡片。
 - `Comment` 关联具体卡片和作者，形成围绕阅读理解的讨论。
+- `ImportedPaper` 保存导读来源、固定标识和字段快照，用于重复导入和保留人工修改。
 - 卡片与评论的 `is_demo` 明确标识样例内容，导出样例卡片时同样说明。
 
 模型使用稳定的数据库主键作为关联与页面标识，避免把可修改标题或用户名当成关联键。`created_at` 与 `updated_at` 为展示和后续同步提供时间信息。
@@ -51,7 +54,7 @@ Markdown 导出保留中文和六个结构化字段，并包含论文地址、�
 
 论文按不可编辑的 `demo_key`（例如 `arxiv-1706.03762`）复用；修改标题或原文链接不会改变初始化标识。首次升级旧样例时，只给专属演示账号名下且原始链接匹配的条目回填标识，不认领普通用户的同链接论文。卡片按 `(paper, author)` 复用，演示评论按 `(card, author, is_demo=True)` 复用。使用 `get_or_create` 的默认值只填充新记录，不覆盖已有修改。编辑演示内容时保留示例标记，维持可追溯性和重复初始化的一致性。
 
-论文元数据来自真实 arXiv 记录；导读、卡片和评论是本项目编写的功能演示文本，不代替对原文的阅读或复核。年份使用首次预印本年份，README 列出原始链接。
+基础示例的元数据来自 arXiv，年份使用首次预印本年份；对应笔记与评论保留演示标识。附来源的导读数据通过 `import_papers` 单独导入，记录正式出版信息、证据位置及核对说明，详见 [导读数据文档](CURATED_IMPORT.md)。
 
 ## 后续接入社区
 
